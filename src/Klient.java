@@ -8,18 +8,23 @@ import javax.swing.*;
 
 public class Klient {
 	
-	JFrame ramkaG³ówna;
-	JPanel panelG³ówny;
+	JFrame ramkaRozmowy;
+	JFrame ramkaNazwyU¿ytkownika;
+	JFrame ramkaWyboruRozmówcy;
+	JPanel panelRozmowy;
+	JPanel panelNazwyU¿ytkownika;
+	JPanel panelWyboruRozmówcy;
 	JTextArea wiadomosci;
 	JTextArea rozmowa;
 	PrintWriter pisarz;
 	BufferedReader buforWejœciowy;
+	String[] listaOpcji;
 	
 public static void main(String[] args)
 {
 	Klient klient = new Klient();
-	klient.Po³¹czZSerwerem();
-	klient.wyœwietlGUI();
+	//klient.Po³¹czZSerwerem();
+	klient.WyœwietlGUINazwyU¿ytkownika();
 	
 }
 	
@@ -48,12 +53,60 @@ public static void main(String[] args)
 		}
 		}
 
-
-	
-	public void wyœwietlGUI()
+	public void WyœwietlGUINazwyU¿ytkownika()
 	{
-			ramkaG³ówna = new JFrame("Gadu-Gadu");
-			panelG³ówny = new JPanel();
+		ramkaNazwyU¿ytkownika = new JFrame("Gadu-Gadu");
+		panelNazwyU¿ytkownika = new JPanel();
+		
+		JLabel nazwa = new JLabel("Podaj nazwe u¿ytkownika");
+		JTextField poleNazwy = new JTextField(15);
+		JButton rejestracja = new JButton("Rejestracja U¿ytkownika");
+		
+		panelNazwyU¿ytkownika.add(nazwa);
+		panelNazwyU¿ytkownika.add(poleNazwy);
+		panelNazwyU¿ytkownika.add(rejestracja);
+		
+		ramkaNazwyU¿ytkownika.getContentPane().add(BorderLayout.CENTER, panelNazwyU¿ytkownika);
+		
+		ramkaNazwyU¿ytkownika.setSize(400,100);
+		ramkaNazwyU¿ytkownika.setVisible(true);
+		
+	}
+
+	public void WyœwietlGUIWyboruRozmówcy()
+	{
+		listaOpcji[0] = "JAN";
+		listaOpcji[1] = "KAZIMIERZ";
+		
+		JFrame ramkaWyboruRozmówcy= new JFrame("Gadu-Gadu");
+		JPanel panelRozmowy  = new JPanel();
+
+		JLabel nazwa = new JLabel("Wybierz U¿ytkownika do rozmowy");
+		JList lista = new JList(listaOpcji);
+		
+		JScrollPane przewijanie = new JScrollPane(lista);
+		przewijanie.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		przewijanie.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		lista.setVisibleRowCount(10);
+		lista.setSelectionMode(1);
+		
+		
+		JButton rozmawiaj = new JButton("Rozmawiaj");
+		
+		panelNazwyU¿ytkownika.add(nazwa);
+		panelNazwyU¿ytkownika.add(poleNazwy);
+		panelNazwyU¿ytkownika.add(rejestracja);
+		
+		ramkaNazwyU¿ytkownika.getContentPane().add(BorderLayout.CENTER, panelNazwyU¿ytkownika);
+		
+		ramkaNazwyU¿ytkownika.setSize(400,100);
+		ramkaNazwyU¿ytkownika.setVisible(true);
+		
+	}
+	public void WyœwietlGUIRozmowy()
+	{
+			ramkaRozmowy = new JFrame("Gadu-Gadu");
+			panelRozmowy = new JPanel();
 		
 			JPanel panelGórny = new JPanel();
 			JPanel panelDolny = new JPanel();
@@ -82,14 +135,14 @@ public static void main(String[] args)
 			JButton wyslij = new JButton ("Wyœlij");
 			wyslij.addActionListener(new mojWyslijListener());
 			
-			panelG³ówny.add(rozmowa);
-			panelG³ówny.add(wiadomosci);
-			panelG³ówny.add(wyslij);
+			panelRozmowy.add(rozmowa);
+			panelRozmowy.add(wiadomosci);
+			panelRozmowy.add(wyslij);
 			
-			ramkaG³ówna.getContentPane().add(BorderLayout.CENTER, panelG³ówny);
+			ramkaRozmowy.getContentPane().add(BorderLayout.CENTER, panelRozmowy);
 			
-			ramkaG³ówna.setSize(700,500);
-			ramkaG³ówna.setVisible(true);
+			ramkaRozmowy.setSize(700,500);
+			ramkaRozmowy.setVisible(true);
 			
 	}
 	
